@@ -17,6 +17,7 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <div class="start">
+                <div class="timer">Timer: 0</div>
                 <h1 class="display-4">Test Your Knowledge!</h1>
                 <h2 class="lead">How much do you know about HTML, CSS, and JavaScript?</h2>
                 <button id="start-btn" type="button" class="btn btn-info main-btn">Start Quiz</button>
@@ -42,11 +43,36 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <div class="youLose">
-                <h1 class="display-4">Nice Work!</h1>
-                <h2 class="lead">How much do you know about HTML, CSS, and JavaScript?</h2>
-                <button id="start-btn" type="button" class="btn btn-info main-btn">Start Quiz</button>
-                <button id="start-highScore-btn" type="button" class="btn btn-info main-btn">Check High Scores</button>
+                <div class="finalScore"></div>
+                <input type="text" size="20" class="lead" placeholder="Add Your Name to the Score Board!" />
+                <button id="finalScore-btn" type="button" class="btn btn-info main-btn">Submit Score</button>
             </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="highScores">
+            <div class="highScoreHead">
+                <h1>javascript code quiz high scores</h1>
+            </div>
+            <table>
+                <tr>
+                    <th id="tableScoreName">
+                        Name
+                    </th>
+                    <th id="tableScoreScore">
+                        Score
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 
