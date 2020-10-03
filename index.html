@@ -4,18 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="">
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@100;300;400;500;700display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Code Quiz</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="start">
-            <h1>Test Your Knowledge!</h1>
-            <h2>How much do you know about HTML, CSS, and JavaScript?</h2>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="start">
+                <h1 class="display-4">Test Your Knowledge!</h1>
+                <h2 class="lead">How much do you know about HTML, CSS, and JavaScript?</h2>
+                <button id="start-btn" type="button" class="btn btn-info main-btn">Start Quiz</button>
+                <button id="start-highScore-btn" type="button" class="btn btn-info main-btn">Check High Scores</button>
+            </div>
         </div>
     </div>
+
+
+    <div class="jumbotron jumbotron-fluid" id="quiz">
+        <div class="timer container">
+            <div class="questions">
+                <p class="display-4">Placeholder</p>
+                <button id="a" type="button" class="btn btn-info answer-btn">A</button>
+                <button id="b" type="button" class="btn btn-info answer-btn">B</button>
+                <button id="c" type="button" class="btn btn-info answer-btn">C</button>
+                <button id="d" type="button" class="btn btn-info answer-btn">D</button>
+                <div class="answer"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="youLose">
+                <h1 class="display-4">Nice Work!</h1>
+                <h2 class="lead">How much do you know about HTML, CSS, and JavaScript?</h2>
+                <button id="start-btn" type="button" class="btn btn-info main-btn">Start Quiz</button>
+                <button id="start-highScore-btn" type="button" class="btn btn-info main-btn">Check High Scores</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
