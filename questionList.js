@@ -3,7 +3,7 @@
 let questions = [{
         prompt: "What does the <p> tag stand for?",
         choiceOptions: ["parent", "paragraph", "parakeet", "private"],
-        correctAnswer: "private"
+        correctAnswer: "paragraph"
     },
     {
         prompt: "in CSS, how would you select the class, 'blue' ?",
