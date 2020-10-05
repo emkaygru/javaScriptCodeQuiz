@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@100;300;400;500;700display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@100;300;500;700display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -14,12 +13,13 @@
 </head>
 
 <body>
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid startContainer">
         <div class="container">
-            <div class="start">
-                <div class="timer">Timer: </div>
+            <div class="start ">
+                <div class="timer">76</div>
                 <h1 class="display-4">Test Your Knowledge!</h1>
                 <h2 class="lead">How much do you know about HTML, CSS, and JavaScript?</h2>
+
                 <button id="start-btn" type="button" class="btn btn-info main-btn">Start Quiz</button>
                 <button id="start-highScore-btn" type="button" class="btn btn-info main-btn">Check High Scores</button>
             </div>
@@ -30,45 +30,38 @@
     <div class="jumbotron jumbotron-fluid" id="quiz">
         <div class="timer container">
             <div class="questions quizContainer">
+
                 <div class="display-4 qph"></div>
+                <button id="a" type="button" class="btn btn-info answer-btn choices">A</button>
+                <button id="b" type="button" class="btn btn-info answer-btn choices">B</button>
+                <button id="c" type="button" class="btn btn-info answer-btn choices">C</button>
+                <button id="d" type="button" class="btn btn-info answer-btn choices">D</button>
+                <div class="answer"></div>
                 <div class="display-4 choiceph"></div>
                 <div class="answerph"></div>
-                <button id="next-btn"></button>
             </div>
         </div>
     </div>
 
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <div class="youLose">
-                <div class="finalScore"></div>
-                <input type="text" size="20" class="lead" placeholder="Add Your Name" />
-                <button id="finalScore-btn" type="button" class="btn btn-info main-btn">Submit Score</button>
-            </div>
-        </div>
-    </div>
 
-    <div class="container">
-        <div class="highScores">
+    <div class="jumbotron jumbotron-fluid youLose">
+        <div class="highScores container ">
             <div class="highScoreHead">
-                <h1>javascript code quiz high scores</h1>
+                <div class="youLose">
+                    <div class="finalScore"></div>
+                    <h1>High Scores</h1>
+                    <input type="text" size="20" class="lead" placeholder="Add Your Name" />
+                    <button id="finalScore-btn" type="button" class="btn btn-info main-btn">Submit Score</button>
+                </div>
             </div>
             <table>
                 <tr>
-                    <th id="tableScoreName">
-                        Name
-                    </th>
-                    <th id="tableScoreScore">
-                        Score
-                    </th>
+                    <th id="tableScoreName">Name</th>
+                    <th id="tableScoreScore">Score</th>
                 </tr>
                 <tr>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
+                    <td>Emily</td>
+                    <td>10</td>
                 </tr>
             </table>
         </div>

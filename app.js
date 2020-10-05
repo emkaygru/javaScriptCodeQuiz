@@ -1,35 +1,37 @@
+// quiz container 
+let quizContainer = document.querySelector(".quizContainer");
 // create variable for time left 
-let timeLeft = 76;
+let timeLeft = document.querySelector('.timer');
 // question count starting point
 let currentQuestionIndex = 0;
 // score starting point
 let score = 0;
 // correct answer variable 
 let correct;
-// timer element that displays the time 
-let timer = document.querySelector("#timer");
-// quiz container 
-let quizContainer = document.querySelector(".quiz-container");
 // paragraph for questions
 let questionEl = document.querySelector(".qph");
-
 // multiple choice options 
 let choicesEl = document.querySelector(".choiceph");
-
 // answer variables 
 let answerEl = document.querySelector(".answerph");
-
+// start page div 
+let startDiv = document.querySelector(".startContainer");
 // start button 
 let startButton = document.querySelector("#start-btn");
-startButton.addEventListener("click", setTimer);
+startButton.addEventListener("click", startQuiz);
 
 // high score  button 
 let highScoreButton = document.querySelector("#start-highScore-btn");
 
+// submit score button - final page
+let submitScoreBtn = document.querySelector("#finalScore-btn");
 
-
+// high score div
+let highScoreDiv = document.querySelector(".highScoreHead")
+// final score
+let finalScoreEl = document.querySelector(".finalScore")
 // game over/ YOU LOSE div
-let youLoseDiv = querySelector(".youLose");
+let youLoseDiv = document.querySelector(".youLose");
 
 // list array of questions 
 let questions = [{
@@ -57,9 +59,9 @@ let questions = [{
 
 // function to convert mins to seconds
 
-function minsToSeconds(minutes) {
-    return Math.floor(minutes * 60);
-}
+// function minsToSeconds(minutes) {
+//     return Math.floor(minutes * 60);
+// }
 //buttons layout the questions and answers
 
 // on click, show question, store score/answer time/ and store answer
@@ -77,43 +79,77 @@ function generateQuestions() {
         return showScore();
     }
     let currentQuestion = questions[currentQuestionIndex];
+    questionEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
+
+    buttonA.innerHTML = currentQuestion.choiceA;
+    buttonB.innerHTML = currentQuestion.choiceB;
+    buttonC.innerHTML = currentQuestion.choiceC;
+    buttonD.innerHTML = currentQuestion.choiceD;
 
 
 }
 
-function startQuiz() {
-    let displayQuestions;
-    // show questions 
-
-    // if user gets answer right show next question and add score
-    if (user)
-        //if user gets answer wrong, minus time, show next question and add score
+function startTimer() {
+    // console.log("game start");
+    let counterTime = timeLeft.textContent;
 
 
-        let timeInterval = setInterval(function () {
-            timeLeft--;
-            timer.textContent = "Time:" + timeLeft;
+    let setTimer = setInterval(function () {
+        counterTime--;
+        timeLeft.textContent = "Time:" + counterTime;
 
-            if (timeLeft <= 0 || questionCount === questions.length) {
-                clearInterval(timeInterval);
-                showScore();
-            }
-        }, 1000);
+        if (counterTime <= 0) {
+            clearInterval(setTimer);
+            showScore();
+
+        }
+    }, 1000);
+    quizContainer.style.display = "block";
 };
 
+
+function startQuiz() {
+    startTimer();
+    youLoseDiv.style.display = "none";
+    startContainer.style.display = "none";
+    generateQuestions();
+    // on click "start quiz" show first question there
+
+    while (i = 0; i < questions.length; i++) {
+
+        if (choice === correctAnswer) {
+            score++;
+            currentQuestionIndex++
+        } else if (choice !== correctAnswer) {
+            timeLeft - 10;
+            currentQuestionIndex++
+        } else if (timeLeft === 0 || currentQuestionIndex === questions.length) {
+            showScore();
+        }
+    }
+
+
+}
 
 
 // show score function
 
 function showScore() {
+    quizContainer.style.display = "none";
 
+    youLoseDiv.startButton = "block";
+
+    clearInterval(timeInterval);
+    highscoreInput.value = "";
+    finalScoreEl.innerHTML = "";
 }
+
 // choice variables
 let userChoice;
 let finalQuestionIndex = questions.length;
 
 function checkAnswer(answer) {
-    correct = quizQuestions[currentQuestionIndex].correctAnswer;
+    correct = questions[currentQuestionIndex].correctAnswer;
 
     if (answer === correct && currentQuestionIndex !== finalQuestionIndex) {
         score++;
