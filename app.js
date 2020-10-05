@@ -33,6 +33,12 @@ let finalScoreEl = document.querySelector(".finalScore")
 // game over/ YOU LOSE div
 let youLoseDiv = document.querySelector(".youLose");
 
+var buttonA = document.querySelector("#a");
+var buttonB = document.querySelector("#b");
+var buttonC = document.querySelector("#c");
+var buttonD = document.querySelector("#d");
+
+
 // list array of questions 
 let questions = [{
     prompt: "What does the <p> tag stand for?",
@@ -55,7 +61,8 @@ let questions = [{
     choiceOptions: ["font-weight", "font-family", "font", "font-decoration"],
     correctAnswer: "font-family"
 }, ]
-
+// final questions
+let finalQuestionIndex = questions.length;
 
 // function to convert mins to seconds
 
@@ -72,9 +79,11 @@ let questions = [{
 
 // when the start button is clicked, start the timer and show question one 
 
-function generateQuestions() {
-    youLoseDiv.style.display = "none";
 
+function generateQuestions() {
+
+    youLoseDiv.classList.add("hide")
+    alert("Hello!");
     if (currentQuestionIndex === finalQuestionIndex) {
         return showScore();
     }
@@ -86,8 +95,9 @@ function generateQuestions() {
     buttonC.innerHTML = currentQuestion.choiceC;
     buttonD.innerHTML = currentQuestion.choiceD;
 
-
 }
+generateQuestions()
+
 
 function startTimer() {
     // console.log("game start");
@@ -113,21 +123,21 @@ function startQuiz() {
     youLoseDiv.style.display = "none";
     startContainer.style.display = "none";
     generateQuestions();
+
     // on click "start quiz" show first question there
 
-    while (i = 0; i < questions.length; i++) {
+    // while (i = 0; i < questions.length; i++) {
 
-        if (choice === correctAnswer) {
-            score++;
-            currentQuestionIndex++
-        } else if (choice !== correctAnswer) {
-            timeLeft - 10;
-            currentQuestionIndex++
-        } else if (timeLeft === 0 || currentQuestionIndex === questions.length) {
-            showScore();
-        }
-    }
-
+    //     if (choice === correctAnswer) {
+    //         score++;
+    //         currentQuestionIndex++
+    //     } else if (choice !== correctAnswer) {
+    //         timeLeft - 10;
+    //         currentQuestionIndex++
+    //     } else if (timeLeft === 0 || currentQuestionIndex === questions.length) {
+    //         showScore();
+    //     }
+    // }
 
 }
 
@@ -146,7 +156,6 @@ function showScore() {
 
 // choice variables
 let userChoice;
-let finalQuestionIndex = questions.length;
 
 function checkAnswer(answer) {
     correct = questions[currentQuestionIndex].correctAnswer;
