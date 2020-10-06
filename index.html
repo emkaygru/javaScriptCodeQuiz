@@ -15,64 +15,27 @@
 <body>
     <div class="jumbotron jumbotron-fluid startContainer">
         <div class="container">
-            <div class="start ">
-
-                <h1 class="display-4">Test Your Knowledge!</h1>
-                <h2 class="lead">How much do you know about HTML, CSS, and JavaScript?</h2>
-
-                <button id="start-btn" type="button" class="btn btn-info main-btn">Start Quiz</button>
-                <button id="start-highScore-btn" type="button" class="btn btn-info main-btn">Check High Scores</button>
+            <div id="timer">Time: 76</div>
+            <div id="score-div" class="start score-div">
+                <h1>Code Quiz</h1>
+                <p>How much do you know about HTML, CSS & Javascript?</p>
             </div>
+            <div id="question-div" class="startPage"></div>
+            <div id="options" class="startPage"></div>
+            <div id="answer" class="startPage"></div>
+            <div id="results" class="startPage"></div>
+            <div id="buttons">
+                <input id="start-button" class="btn btn-info main-btn" type="button" value="Start Quiz"></div>
+
+
         </div>
     </div>
 
-
-    <div class="jumbotron jumbotron-fluid hide" id="quiz">
-        <div class="timer container">
-            <div class="questions quizContainer">
-
-                <div class="display-4 qph"></div>
-                <button id="a" type="button" class="btn btn-info answer-btn choices">A</button>
-                <button id="b" type="button" class="btn btn-info answer-btn choices">B</button>
-                <button id="c" type="button" class="btn btn-info answer-btn choices">C</button>
-                <button id="d" type="button" class="btn btn-info answer-btn choices">D</button>
-                <div class="answer"></div>
-                <div class="display-4 choiceph"></div>
-                <div class="answerph"></div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="jumbotron jumbotron-fluid youLose">
-        <div class="highScores container ">
-            <div class="highScoreHead">
-                <div class="youLose">
-                    <div class="finalScore"></div>
-                    <h1>High Scores</h1>
-                    <input type="text" size="20" class="lead" placeholder="Add Your Name" />
-                    <button id="finalScore-btn" type="button" class="btn btn-info main-btn">Submit Score</button>
-                </div>
-            </div>
-            <table>
-                <tr>
-                    <th id="tableScoreName">Name</th>
-                    <th id="tableScoreScore">Score</th>
-                </tr>
-                <tr>
-                    <td>Emily</td>
-                    <td>10</td>
-                </tr>
-            </table>
-        </div>
-    </div>
 
     <script src="app.js">
 
     </script>
-    <script src="questionList.js">
 
-    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
