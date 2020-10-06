@@ -97,7 +97,8 @@ var finalQuestionIndex = questions.length;
 function generateQuestions() {
 
     youLoseDiv.classList.add("hide")
-    alert("Hello!");
+    startDiv.classList.add("hide")
+
     startTimer();
 
     showQuestions()
