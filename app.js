@@ -1,37 +1,37 @@
 // quiz container 
-let quizContainer = document.querySelector(".quizContainer");
+var quizContainer = document.querySelector(".quizContainer");
 // create variable for time left 
-let timeLeft = document.querySelector('.timer');
+var timeLeft = document.querySelector('.timer');
 // question count starting point
-let currentQuestionIndex = 0;
+var currentQuestionIndex = 0;
 // score starting point
-let score = 0;
+var score = 0;
 // correct answer variable 
-let correct;
+var correct;
 // paragraph for questions
-let questionEl = document.querySelector(".qph");
+var questionEl = document.querySelector(".qph");
 // multiple choice options 
-let choicesEl = document.querySelector(".choiceph");
+var choicesEl = document.querySelector(".choiceph");
 // answer variables 
-let answerEl = document.querySelector(".answerph");
+var answerEl = document.querySelector(".answerph");
 // start page div 
-let startDiv = document.querySelector(".startContainer");
+var startDiv = document.querySelector(".startContainer");
 // start button 
-let startButton = document.querySelector("#start-btn");
+var startButton = document.querySelector("#start-btn");
 startButton.addEventListener("click", startQuiz);
 
 // high score  button 
-let highScoreButton = document.querySelector("#start-highScore-btn");
+var highScoreButton = document.querySelector("#start-highScore-btn");
 
 // submit score button - final page
-let submitScoreBtn = document.querySelector("#finalScore-btn");
+var submitScoreBtn = document.querySelector("#finalScore-btn");
 
 // high score div
-let highScoreDiv = document.querySelector(".highScoreHead")
+var highScoreDiv = document.querySelector(".highScoreHead")
 // final score
-let finalScoreEl = document.querySelector(".finalScore")
+var finalScoreEl = document.querySelector(".finalScore")
 // game over/ YOU LOSE div
-let youLoseDiv = document.querySelector(".youLose");
+var youLoseDiv = document.querySelector(".youLose");
 
 var buttonA = document.querySelector("#a");
 var buttonB = document.querySelector("#b");
@@ -40,29 +40,43 @@ var buttonD = document.querySelector("#d");
 
 
 // list array of questions 
-let questions = [{
+var questions = [{
     prompt: "What does the <p> tag stand for?",
-    choiceOptions: ["parent", "paragraph", "parakeet", "private"],
-    correctAnswer: "paragraph"
-}, {
-    prompt: "in CSS, how would you select the class, 'blue' ?",
-    choiceOptions: ["#blue", "blue", ".blue", "blue."],
-    correctAnswer: ".blue"
-}, {
-    prompt: "In javaScript, what do you add at the end of a function to call (or run) it?",
-    choiceOptions: ["[]", "{}", "()", "++"],
-    correctAnswer: "()"
-}, {
-    prompt: "In HTML, in what tag, do you give your site a Title?",
-    choiceOptions: ["<body>", "<nav>", "<meta>", "<title>"],
-    correctAnswer: "<title>"
-}, {
-    prompt: "How do you specify a font in CSS?",
-    choiceOptions: ["font-weight", "font-family", "font", "font-decoration"],
-    correctAnswer: "font-family"
-}, ]
+    choiceOptions: [{
+            text: "parent",
+            correctAnswer: false
+        }, {
+            text: "paragraph",
+            correctAnswer: true
+        }, {
+            text: "parakeet",
+            correctAnswer: false
+        },
+        {
+            text: "private",
+            correctAnswer: false
+        }
+    ]
+    // correctAnswer: "paragraph"
+    // }, {
+    //     prompt: "in CSS, how would you select the class, 'blue' ?",
+    //     choiceOptions: ["#blue", "blue", ".blue", "blue."],
+    //     correctAnswer: ".blue"
+    // }, {
+    //     prompt: "In javaScript, what do you add at the end of a function to call (or run) it?",
+    //     choiceOptions: ["[]", "{}", "()", "++"],
+    //     correctAnswer: "()"
+    // }, {
+    //     prompt: "In HTML, in what tag, do you give your site a Title?",
+    //     choiceOptions: ["<body>", "<nav>", "<meta>", "<title>"],
+    //     correctAnswer: "<title>"
+    // }, {
+    //     prompt: "How do you specify a font in CSS?",
+    //     choiceOptions: ["font-weight", "font-family", "font", "font-decoration"],
+    //     correctAnswer: "font-family"
+}]
 // final questions
-let finalQuestionIndex = questions.length;
+var finalQuestionIndex = questions.length;
 
 // function to convert mins to seconds
 
@@ -84,10 +98,17 @@ function generateQuestions() {
 
     youLoseDiv.classList.add("hide")
     alert("Hello!");
-    if (currentQuestionIndex === finalQuestionIndex) {
-        return showScore();
-    }
+    startTimer();
+
+    showQuestions()
+
+    // if (currentQuestionIndex === finalQuestionIndex) {
+    //     return showScore();
+
+    // }
+
     let currentQuestion = questions[currentQuestionIndex];
+
     questionEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
 
     buttonA.innerHTML = currentQuestion.choiceA;
@@ -96,6 +117,19 @@ function generateQuestions() {
     buttonD.innerHTML = currentQuestion.choiceD;
 
 }
+
+function showQuestions(prompt) {
+    questionEl.textContent = prompt.prompt;
+    prompt.choiceOptions.forEach(answer => {
+
+        var answerBtn = document.createElement("button");
+
+        answerBtn.textContent = answer.text;
+        alert(answer.text)
+    });
+}
+
+// main call 
 generateQuestions()
 
 
