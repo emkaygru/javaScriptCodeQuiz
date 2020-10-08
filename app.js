@@ -5,114 +5,60 @@ var timeLeft = document.querySelector('#timer');
 var currentQuestionIndex = 0;
 // score starting point
 var score = 0;
-// correct answer variable 
-var correct;
+
 // start page div 
-var startDiv = document.querySelector(".startContainer");
+var startDivContainer = document.querySelector(".start-div-container");
 // start button 
-var startButton = document.querySelector("#start-btn");
+var startButton = document.querySelector("#start-button");
 startButton.addEventListener("click", startQuiz);
 // high score  button 
 var highScoreButton = document.querySelector("#start-highScore-btn");
 // submit score button - final page
 var submitScoreBtn = document.querySelector("#finalScore-btn");
+// questions div place holder
+var questionsDiv = document.querySelector("#question-div");
+// options / multiple choice div place holder
+var optionsDiv = document.querySelector("#options");
+// answer place holder
+var answerDiv = document.querySelector("#answer");
+// results div - may be the same as answer div, but adding it just in case
+var resultsDiv = document.querySelector("#results");
+// general buttons div
+var buttons = document.querySelector("#buttons");
 // high score div
 var highScoreDiv = document.querySelector(".highScoreHead")
 // final score
 var finalScoreEl = document.querySelector(".finalScore")
 // final questions
-var finalQuestionIndex = questions.length;
+
 
 
 // list array of questions 
 var questions = [{
         prompt: "What does the <p> tag stand for?",
-        choiceOptions: [{
-                text: "parent",
-                correctAnswer: false
-            }, {
-                text: "paragraph",
-                correctAnswer: true
-            }, {
-                text: "parakeet",
-                correctAnswer: false
-            },
-            {
-                text: "private",
-                correctAnswer: false
-            }
-        ]
-
-    }, {
-        prompt: "in CSS, how would you select the class, 'blue' ?",
-        choiceOptions: [{
-                text: "#blue",
-                correctAnswer: false
-            },
-            {
-                text: "blue",
-                correctAnswer: false
-            },
-            {
-                text: ".blue",
-                correctAnswer: true
-            },
-            {
-                text: "blue.",
-                correctAnswer: false
-            }
-        ],
+        choiceOptions: ["parent", "paragraph", "parakeet", "private"],
+        correctAnswer: "paragraph"
+    },
+    {
+        prompt: "In CSS, how would you select the class, 'blue' ?",
+        choiceOptions: ["#blue", "blue", ".blue", "blue."],
+        correctAnswer: ".blue",
     },
     {
         prompt: "In javaScript, what do you add at the end of a function to call (or run) it?",
-        choiceOptions: [{
-            text: "[]",
-            correctAnswer: false
-        }, {
-            text: "{}",
-            correctAnswer: false
-        }, {
-            text: "()",
-            correctAnswer: true
-        }, {
-            text: "++",
-            correctAnswer: false
-        }],
+        choiceOptions: ["[]", "{}", "()", "++"],
+        correctAnswer: "()",
     }, {
         prompt: "In HTML, in what tag, do you give your site a Title?",
-        choiceOptions: [{
-            text: "<body>",
-            correctAnswer: false
-        }, {
-            text: "<nav>",
-            correctAnswer: false
-        }, {
-            text: "<meta>",
-            correctAnswer: false
-        }, {
-            text: "<title>",
-            correctAnswer: true
-        }],
+        choiceOptions: ["<body>", "<nav>", "<meta>", "<title>"],
         correctAnswer: "<title>"
     }, {
         prompt: "How do you specify a font in CSS?",
-        choiceOptions: [{
-            text: "font-weight",
-            correctAnswer: false
-        }, {
-            text: "font-family",
-            correctAnswer: true
-        }, {
-            text: "font",
-            correctAnswer: false
-        }, {
-            text: "font-decoration",
-            correctAnswer: false
-        }],
+        choiceOptions: ["font-weight", "font-family", "font", "font-decoration"],
         correctAnswer: "font-family"
     }
 ]
-
+var finalQuestionIndex = questions.length;
 
 // function to convert mins to seconds
 
@@ -128,54 +74,23 @@ var questions = [{
 // object -- key pairs object questions answers 
 
 // when the start button is clicked, start the timer and show question one 
-
-
-
-function generateQuestions() {
-
-
-    removeEls(startButton);
-
+function startQuiz() {
+    startTimer();
+    hideStart();
 
 }
-
-function scoreQuestions() {
-
-    if (questions.correctAnswer === true) {
-        currentQuestionIndex++
-    } else if (questions.correctAnswer === false) {
-        currentQuestionIndex++
-        timeLeft - 10;
-    } else {
-        showScore();
-    }
-}
-
-//  function showQuestions(prompt) {
-//      // questionEl.textContent = prompt.prompt;
-//      prompt.choiceOptions.forEach(answer => {
-
-//          var answerBtn = document.createElement("button");
-
-//          answerBtn.textContent = answer.text;
-//         alert(answer.text)
-//      });
-// }
-
-// main call 
-generateQuestions()
 
 
 function startTimer() {
     // console.log("game start");
 
-    alert('hi');
+    // alert('hi');
 
     let setTimer = setInterval(function () {
         timer--;
         timeLeft.textContent = "Time:" + timer;
 
-        if (timer === 0) {
+        if (timer === 0 || questions.length === finalQuestionIndex) {
             clearInterval(setTimer);
             showScore();
 
@@ -184,50 +99,30 @@ function startTimer() {
 
 };
 
-function hideStart() {
-    startButton.style.display = "none";
-}
+// function showQuestions() {
+//     questionsDiv.style.display = "visible";
+// }
 
-function startQuiz() {
-    startTimer();
+function generateQuestions() {
 
-    generateQuestions();
-    hideStart();
-    youLoseDiv.classList.add("show")
+    for (var i = 0; i < questions.length; i++) {
+        var response = questions[i].prompt;
 
-
-    // on click "start quiz" show first question there
-
-    while (i = 0 < questions.length++) {
-
-        if (choice === correctAnswer) {
-
-            currentQuestionIndex++
-        } else if (choice !== correctAnswer) {
+        if (response === questions[i].correctAnswer) {
+            score++;
+            currentQuestionIndex++;
+            alert("You are Correct!")
+        } else {
+            alert("Wrong Answer");
             timeLeft - 10;
-            currentQuestionIndex++
-        } else if (timeLeft === 0 || currentQuestionIndex === questions.length) {
-            showScore();
         }
     }
-
 }
+// alert("you got " + score + "/" + questions.length); // optional alert for their "score"
 
-
-
-// choice variables
-let userChoice;
-
-function checkAnswer(answer) {
-    correct = questions[currentQuestionIndex].correctAnswer;
-
-    if (answer === correct && currentQuestionIndex !== finalQuestionIndex) {
-        score++;
-        currentQuestionIndex++
-    } else if (answer !== correct && currentQuestionIndex !== finalQuestionIndex) {
-        currentQuestionIndex++
-    } else {
-        score;
-    }
+function hideStart() {
+    startButton.style.display = "none";
+    startDivContainer.style.display = "none";
+    questionsDiv.style.display = "visible";
 
 }
