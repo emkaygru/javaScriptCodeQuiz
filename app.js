@@ -87,14 +87,15 @@ function startTimer() {
     // alert('hi');
 
     let setTimer = setInterval(function () {
-        timer--;
+
         timeLeft.textContent = "Time:" + timer;
 
         if (timer === 0 || questions.length === finalQuestionIndex) {
             clearInterval(setTimer);
-            showScore();
+            // showScore();
 
         }
+        timer--;
     }, 1000);
 
 };
@@ -105,8 +106,25 @@ function startTimer() {
 
 function generateQuestions() {
 
+
+    // var multiChoiceA = document.createElement("button");
+    // var multiChoiceB = document.createElement("button");
+    // var multiChoiceC = document.createElement("button");
+    // var multiChoiceD = document.createElement("button");
+
+    for (j = 0; j < questions.length; j++) {
+        var multiChoice = document.createElement("button");
+        document.body.appendChild(multiChoice);
+        multiChoice.innerHTML = questions[j].choiceOptions;
+    }
+
     for (var i = 0; i < questions.length; i++) {
+
         var response = questions[i].prompt;
+
+        var questionTitle = document.createElement("p");
+        questionTitle.innerHTML = questions[i].prompt;
+        document.getElementById("#question-div").appendChild(questionTitle);
 
         if (response === questions[i].correctAnswer) {
             score++;
