@@ -22,18 +22,47 @@
                     <p>How much do you know about HTML, CSS & Javascript?</p>
                 </div>
             </div>
-            <div id="timer">Time: 76</div>
+            <span id="timer">Time: 76</span>
             <div id="question-div" class=" hide">
+                <div id="multichoice" class="hide">
+                    <button id="a" class="hide">A</button>
+                    <button id="b" class="hide">B</button>
+                    <button id="c" class="hide">C</button>
+                    <button id="d" class="hide">D</button>
+                </div>
 
             </div>
-            <div id="options" class="startPage"></div>
-            <div id="answer" class="startPage hide"></div>
-            <div id="results" class="startPage hide"></div>
-            <div id="buttons">
-                <input id="start-button" class="btn btn-info main-btn" type="button" value="Start Quiz"></div>
+            <div id=highscore-container class="results hide">
+                <div id="high-scorePage">
+                    <div id="highscore-header">
+                        <h3>User Initials</h3>
+                        <h3>Score</h3>
+                    </div>
+                    <div id="highscore-initials"></div>
+                    <div id="highscore-score"></div>
+                </div>
 
+        
+                <div id="answer" class="startPage hide"></div>
+                <div class="results startPage hide">
+                    <div id="highscore">
+                        <div id="highscore-input">
+                            <div id="highscore-name"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="buttons" class="hide">
+                    <input id="start-button" class="btn btn-info main-btn" type="button" value="Start Quiz">
+                    <input id="replay-button" class="btn btn-info replay-btn" type="button" value="Play Quiz Again">
+                    <input id="clearScore-button" class="btn btn-info replay-btn" type="button" value="Clear Scores">
+                </div>
+
+            </div>
 
         </div>
+
+
+    </div>
     </div>
 
 

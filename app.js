@@ -6,6 +6,12 @@ var currentQuestionIndex = 0;
 // score starting point
 var score = 0;
 
+// buttons for a, b, c, d 
+var buttonA = document.querySelector('#a');
+var buttonB = document.querySelector("#b");
+var buttonC = document.querySelector("#c");
+var buttonD = document.querySelector("#d");
+var buttons = document.querySelector("#buttons")
 // start page div 
 var startDivContainer = document.querySelector(".start-div-container");
 // start button 
@@ -22,7 +28,7 @@ var optionsDiv = document.querySelector("#options");
 // answer place holder
 var answerDiv = document.querySelector("#answer");
 // results div - may be the same as answer div, but adding it just in case
-var resultsDiv = document.querySelector("#results");
+var resultsDiv = document.querySelector(".results");
 // general buttons div
 var buttons = document.querySelector("#buttons");
 // high score div
@@ -30,31 +36,49 @@ var highScoreDiv = document.querySelector(".highScoreHead")
 // final score
 var finalScoreEl = document.querySelector(".finalScore")
 // final questions
+var multiChoiceEl = document.querySelector("#multichoice");
 
-
-
+var highScoreDiv = document.querySelector("#highscore")
+var highScoreInput = document.querySelector("#highscore-input")
+var highScoreName = document.querySelector("#highscore-name")
+var highScoreContainer = document.querySelector("#highscore-container")
 // list array of questions 
 var questions = [{
-        prompt: "What does the <p> tag stand for?",
-        choiceOptions: ["parent", "paragraph", "parakeet", "private"],
+        query: "What does  <code> < p > </code> tag stand for?",
+        choiceA: "parent",
+        choiceB: "paragraph",
+        choiceC: "parakeet",
+        choiceD: "private",
         correctAnswer: "paragraph"
     },
     {
-        prompt: "In CSS, how would you select the class, 'blue' ?",
-        choiceOptions: ["#blue", "blue", ".blue", "blue."],
+        query: "In CSS, how would you select the class, 'blue' ?",
+        choiceA: "#blue",
+        choiceB: "blue",
+        choiceC: ".blue",
+        choiceD: "blue.",
         correctAnswer: ".blue",
     },
     {
-        prompt: "In javaScript, what do you add at the end of a function to call (or run) it?",
-        choiceOptions: ["[]", "{}", "()", "++"],
+        query: "In javaScript, what do you add at the end of a function to call (or run) it?",
+        choiceA: "[]",
+        choiceB: "{}",
+        choiceC: "()",
+        choiceD: "++",
         correctAnswer: "()",
     }, {
-        prompt: "In HTML, in what tag, do you give your site a Title?",
-        choiceOptions: ["<body>", "<nav>", "<meta>", "<title>"],
+        query: "In HTML, in what tag, do you give your site a Title?",
+        choiceA: "<body>",
+        choiceB: "<nav>",
+        choiceC: "<meta>",
+        choiceD: "<title>",
         correctAnswer: "<title>"
     }, {
-        prompt: "How do you specify a font in CSS?",
-        choiceOptions: ["font-weight", "font-family", "font", "font-decoration"],
+        query: "How do you specify a font in CSS?",
+        choiceA: "font-weight",
+        choiceB: "font-family",
+        choiceC: "font",
+        choiceD: "font-decoration",
         correctAnswer: "font-family"
     }
 ]
@@ -74,36 +98,34 @@ var finalQuestionIndex = questions.length;
 // object -- key pairs object questions answers 
 
 // when the start button is clicked, start the timer and show question one 
+
+
+
 function startQuiz() {
     startTimer();
     hideStart();
-
+    generateQuestions(); // execute the generateQuestions function
 }
-
 
 function startTimer() {
     // console.log("game start");
 
+
     // alert('hi');
 
     let setTimer = setInterval(function () {
-
         timeLeft.textContent = "Time:" + timer;
-
-        if (timer === 0 || questions.length === finalQuestionIndex) {
+        if (timer === 0) {
             clearInterval(setTimer);
-            // showScore();
-
+            showScore();
         }
-        timer--;
+        timer -= 1;
     }, 1000);
 
 };
 
-// function showQuestions() {
-//     questionsDiv.style.display = "visible";
-// }
 
+// function to generate through questions -- still having issues with it showing up!? 
 function generateQuestions() {
 
 
@@ -111,6 +133,7 @@ function generateQuestions() {
     // var multiChoiceB = document.createElement("button");
     // var multiChoiceC = document.createElement("button");
     // var multiChoiceD = document.createElement("button");
+
 
     for (j = 0; j < questions.length; j++) {
         var multiChoice = document.createElement("button");
@@ -124,7 +147,8 @@ function generateQuestions() {
 
         var questionTitle = document.createElement("p");
         questionTitle.innerHTML = questions[i].prompt;
-        document.getElementById("#question-div").appendChild(questionTitle);
+        // document.getElementById("#question-div").appendChild(questionTitle); 
+        questionsDiv.appendChild(questionTitle);
 
         if (response === questions[i].correctAnswer) {
             score++;
@@ -134,13 +158,89 @@ function generateQuestions() {
             alert("Wrong Answer");
             timeLeft - 10;
         }
+        break;
     }
 }
-// alert("you got " + score + "/" + questions.length); // optional alert for their "score"
 
+
+
+
+
+// hide start functions but can't get the buttons to hide hmmm
 function hideStart() {
     startButton.style.display = "none";
     startDivContainer.style.display = "none";
-    questionsDiv.style.display = "visible";
+    questionsDiv.style.display = "none";
+    buttons.style.display = "none";
+    highScoreContainer.style.display = "none";
 
 }
+// function to hide or show when needed? is necessary?
+function showQuestions() {
+    questionsDiv.style.display = "visible";
+    multiChoiceEl.style.display = "visible";
+
+}
+// show score at the end? 
+function showScore() {
+    startDivContainer.style.display = "none"
+    resultsDiv.style.display = "flex";
+    clearInterval(startTimer);
+    highScoreName.value = "";
+}
+// input the score at the end of the quiz 
+function scoreInput() {
+    if (highScoreName.value === "") {
+        alert("Initials cannot be blank");
+        return false;
+    } else {
+        var savedHighScores = JSON.parse(localStorage.getItem("savedHighScores")) || [];
+        var currentUser = highScoreName.value.trim();
+        var currentHighScore = {
+            name: currentUser,
+            score: score
+        };
+
+        resultsDiv.style.display = "none";
+        highScoreDiv.style.display = "block";
+
+        savedHighScores.push(currentHighScore);
+        localStorage.setItem("savedHighScores", JSON.stringify(savedHighScores));
+        generateHighScores();
+    }
+};
+
+// submitScoreBtn.addEventListener("click", scoreInput);
+// pull from LS and add the highscore to the list of highscores - append the high score. 
+function generateHighScores() {
+    highScore.innerHTML = "";
+    highScoreName.innerHTML = "";
+    var highscore = JSON.parse(localStorage.getItem("savedHighScores")) || [];
+
+    for (i = 0; i < highscore.length; i++) {
+        var newNameSpan = document.createElement("li");
+        var newScoreSpan = document.createElement("li");
+        newNameSpan.textContent = highscore[i].name;
+        newScoreSpan.textContent = highscore[i].score;
+        highscore.appendChild(newScoreSpan);
+        highscoreName.appendChild(newNameSpan);
+    }
+}
+// clear scores to start new game  
+function clearScores() {
+    window.localStorage.clear();
+    highscore.textContent = "";
+    highscoreName.textContent = "";
+
+}
+// replay code quiz 
+function replay() {
+    highscoreContainer.style.display = "none";
+    resultsDiv.style.display = "none";
+    startDivContainer.style.display = "flex";
+    timeLeft = 76;
+    score = 0;
+    currentQuestionIndex = 0;
+}
+
+startButton.addEventListener("click", startQuiz)
