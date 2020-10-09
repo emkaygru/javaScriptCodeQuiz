@@ -209,38 +209,3 @@ function scoreInput() {
         generateHighScores();
     }
 };
-
-// submitScoreBtn.addEventListener("click", scoreInput);
-// pull from LS and add the highscore to the list of highscores - append the high score. 
-function generateHighScores() {
-    highScore.innerHTML = "";
-    highScoreName.innerHTML = "";
-    var highscore = JSON.parse(localStorage.getItem("savedHighScores")) || [];
-
-    for (i = 0; i < highscore.length; i++) {
-        var newNameSpan = document.createElement("li");
-        var newScoreSpan = document.createElement("li");
-        newNameSpan.textContent = highscore[i].name;
-        newScoreSpan.textContent = highscore[i].score;
-        highscore.appendChild(newScoreSpan);
-        highscoreName.appendChild(newNameSpan);
-    }
-}
-// clear scores to start new game  
-function clearScores() {
-    window.localStorage.clear();
-    highscore.textContent = "";
-    highscoreName.textContent = "";
-
-}
-// replay code quiz 
-function replay() {
-    highscoreContainer.style.display = "none";
-    resultsDiv.style.display = "none";
-    startDivContainer.style.display = "flex";
-    timeLeft = 76;
-    score = 0;
-    currentQuestionIndex = 0;
-}
-
-startButton.addEventListener("click", startQuiz)
