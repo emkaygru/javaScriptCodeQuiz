@@ -99,11 +99,11 @@ var finalQuestionIndex = questions.length;
 
 // when the start button is clicked, start the timer and show question one 
 
-multiChoiceEl.style.display = "none";
+
 
 function startQuiz() {
     startTimer();
-    hideStart();
+    showQuestions();
     generateQuestions();
 }
 
@@ -127,39 +127,60 @@ function startTimer() {
 
 // function to generate through questions -- still having issues with it showing up!? 
 function generateQuestions() {
-    multiChoiceEl.style.display = "visible";
-
-    // var multiChoiceA = document.createElement("button");
-    // var multiChoiceB = document.createElement("button");
-    // var multiChoiceC = document.createElement("button");
-    // var multiChoiceD = document.createElement("button");
+    var i = 0;
 
 
-    for (j = 0; j < questions.length; j++) {
-        var multiChoice = document.createElement("button");
-        document.body.appendChild(multiChoice);
-        multiChoice.innerHTML = questions[j];
-    }
+    questionsDiv.style.display = "visible";
 
-    for (var i = 0; i < questions.length; i++) {
+    var multiChoiceA = document.createElement("button");
+    var multiChoiceB = document.createElement("button");
+    var multiChoiceC = document.createElement("button");
+    var multiChoiceD = document.createElement("button");
+    console.log(multiChoiceA);
 
-        var response = questions[i].query;
+    document.querySelector('#question').innerHTML = questions[i].query;
+    multiChoiceA.setAttribute('data-answer', questions[i].choiceA)
+    multiChoiceB.setAttribute('data-answer', questions[i].choiceB)
+    multiChoiceC.setAttribute('data-answer', questions[i].choiceC)
+    multiChoiceD.setAttribute('data-answer', questions[i].choiceD)
 
-        var questionTitle = document.createElement("p");
-        questionTitle.innerHTML = questions[i].query;
-        // document.getElementById("#question-div").appendChild(questionTitle); 
-        questionsDiv.appendChild(questionTitle);
+    multiChoiceA.innerHTML = questions[i].choiceA;
+    multiChoiceB.innerHTML = questions[i].choiceB;
+    multiChoiceC.innerHTML = questions[i].choiceC;
+    multiChoiceD.innerHTML = questions[i].choiceD;
 
-        if (response === questions[i].correctAnswer) {
-            score++;
-            currentQuestionIndex++;
-            alert("You are Correct!")
-        } else {
-            alert("Wrong Answer");
-            timeLeft - 10;
-        }
-        break;
-    }
+
+    var multiChoice = document.querySelector('#multichoice');
+    multiChoice.appendChild(multiChoiceA);
+    multiChoice.appendChild(multiChoiceB);
+    multiChoice.appendChild(multiChoiceC);
+    multiChoice.appendChild(multiChoiceD);
+
+    // for (j = 0; j < questions.length; j++) {
+    //     var multiChoice = document.createElement("button");
+    //     document.querySelector("").appendChild(multiChoice);
+    //     multiChoice.innerHTML = questions[j].choiceA;
+    // }
+
+    // for (var i = 0; i < questions.length; i++) {
+
+    //     var response = questions[i].query;
+
+    //     var questionTitle = document.createElement("p");
+    //     questionTitle.innerHTML = questions[i].query;
+    //     // document.getElementById("#question-div").appendChild(questionTitle); 
+    //     questionsDiv.appendChild(questionTitle);
+
+    //     if (response === questions[i].correctAnswer) {
+    //         score++;
+    //         currentQuestionIndex++;
+    //         alert("You are Correct!")
+    //     } else {
+    //         // alert("Wrong Answer");
+    //         timeLeft - 10;
+    //     }
+    //     break;
+    // }
 }
 
 
@@ -168,7 +189,7 @@ function generateQuestions() {
 
 // hide start functions but can't get the buttons to hide hmmm
 function hideStart() {
-    startButton.style.display = "none";
+
     startDivContainer.style.display = "none";
     questionsDiv.style.display = "none";
     buttons.style.display = "none";
@@ -179,6 +200,7 @@ function hideStart() {
 function showQuestions() {
     questionsDiv.style.display = "block";
     multiChoiceEl.style.display = "visible";
+    startButton.style.display = "none";
 
 }
 // show score at the end? 
