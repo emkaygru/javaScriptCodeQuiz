@@ -99,12 +99,12 @@ var finalQuestionIndex = questions.length;
 
 // when the start button is clicked, start the timer and show question one 
 
-
+multiChoiceEl.style.display = "none";
 
 function startQuiz() {
     startTimer();
     hideStart();
-    generateQuestions(); // execute the generateQuestions function
+    generateQuestions();
 }
 
 function startTimer() {
@@ -127,7 +127,7 @@ function startTimer() {
 
 // function to generate through questions -- still having issues with it showing up!? 
 function generateQuestions() {
-
+    multiChoiceEl.style.display = "visible";
 
     // var multiChoiceA = document.createElement("button");
     // var multiChoiceB = document.createElement("button");
@@ -138,15 +138,15 @@ function generateQuestions() {
     for (j = 0; j < questions.length; j++) {
         var multiChoice = document.createElement("button");
         document.body.appendChild(multiChoice);
-        multiChoice.innerHTML = questions[j].choiceOptions;
+        multiChoice.innerHTML = questions[j];
     }
 
     for (var i = 0; i < questions.length; i++) {
 
-        var response = questions[i].prompt;
+        var response = questions[i].query;
 
         var questionTitle = document.createElement("p");
-        questionTitle.innerHTML = questions[i].prompt;
+        questionTitle.innerHTML = questions[i].query;
         // document.getElementById("#question-div").appendChild(questionTitle); 
         questionsDiv.appendChild(questionTitle);
 
@@ -177,7 +177,7 @@ function hideStart() {
 }
 // function to hide or show when needed? is necessary?
 function showQuestions() {
-    questionsDiv.style.display = "visible";
+    questionsDiv.style.display = "block";
     multiChoiceEl.style.display = "visible";
 
 }
